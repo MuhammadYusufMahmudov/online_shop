@@ -44,7 +44,7 @@
     function set_params(url, param, value) {
         path = url.split('?')[0]
         if (url.includes("?")) {
-            curl = url.split('?')[1]
+            curl = url.split('? ')[1]
             params = curl.split('&')
             is_found = false
             for (i = 0; i < params.length; i++) {
