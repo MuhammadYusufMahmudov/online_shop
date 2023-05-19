@@ -34,11 +34,16 @@
            {% else %}
            btn-warning
            {% endif %}"
-        >{% if object.orders %}
-        </button>
+                {% if object.get_status == 'Unavailable' %}
+                disalbled
+                {% endif %}
+        >
+        {% if object.orders %}
+        {{ object.get_status }}
         {% else %}
-        Add to cart
+            Add to cart
         {% endif %}
+        </button>
 
         <!--            <a href="javascript:;" data-id="{{ object.id }}" class="add-cart btn btn-block btn-warning">Added to cart </a>-->
     </figcaption>

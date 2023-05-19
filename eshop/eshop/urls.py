@@ -18,8 +18,10 @@ from django.urls import path, include
 from product.views import home, search
 from account.views import log_in, register, log_out
 from django.conf.urls.static import static, settings
+from .api import router
 
 urlpatterns = [
+    path('api/', include(router.urls)),
     path('admin/', admin.site.urls),
     path('', home, name='home'),
     path('product/', include('product.urls')),

@@ -4,6 +4,7 @@ import json
 
 from order.models import Order, OrderDetail
 from product.models import Product
+from utils.decorators import is_verified
 from utils.utils import get_order_count
 
 
@@ -44,13 +45,12 @@ def add_cart(request):
 
     })
 
-
+@is_verified
 def orders_cart(request):
     order = request.user.orders.all().last()
     return render(
         request=request,
         template_name='orders/orders_cart.html',
-
         context={
             'order': order,
             'badge_count': get_order_count(request)

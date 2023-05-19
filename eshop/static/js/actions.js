@@ -70,6 +70,9 @@
 
 //        {# ADD TO CART #}
         $('.add-cart').click(function () {
+            $(this).removeClass('btn-primary')
+            $(this).text('Added to cart')
+            $(this).addClass('btn-success')
             product_id = $(this).data('id')
             data = {'product_id':product_id}
             url_cart = '/order/add-cart/'

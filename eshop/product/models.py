@@ -19,12 +19,16 @@ class Product(models.Model):
 
     def get_status(self):
         if self.quantity > 0:
-            if get_current_authenticated_user().orders.all():
-                order = get_current_authenticated_user().orders.all().order_by('-id').first()
-                for item in order.details.all():
-                    if self == item.product:
-                        return 'Added to cart'
-                return 'Add to cart'
+            cuser = get_current_authenticated_user()
+            if cuser:
+                if cuser.orders.all():
+                    order = get_current_authenticated_user().orders.all().order_by('-id').first()
+                    for item in order.details.all():
+                        if self == item.product:
+                            return 'Added to cart'
+                    return 'Add to cart'
+                else:
+                    return 'Add to cart'
             else:
                 return 'Add to cart'
         else:
